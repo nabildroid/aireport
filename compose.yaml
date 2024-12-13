@@ -1,0 +1,22 @@
+services:
+  web:
+    build: web
+    ports:
+      - 3000:3000
+
+  ai-wroker:
+    build: ai-worker
+    ports:
+      - 3001:3000
+  
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+        - 5672:5672
+        -   :15672
+  redis:
+    image: redis
+
+
+  
+    
