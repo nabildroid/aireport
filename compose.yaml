@@ -1,19 +1,33 @@
 services:
+
+
+  nginx:
+    image: openresty/openresty:alpine
+    ports:
+      - 3000:80
+
+    
+    
+    volumes:
+      - ./nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
   web:
     build: web
-    ports:
-      - 3000:3000
 
-  ai-wroker:
-    build: ai-worker
-    ports:
-      - 3001:3000
+    deploy:
+      replicas: 5
+
+  # ai-wroker:
+  #   deploy:
+  #     replicas: 3
+
+  #   build: ai-worker
+    
   
-  rabbitmq:
-    image: rabbitmq:3-management-alpine
-    ports:
-        - 5672:5672
-        -   :15672
+  # rabbitmq:
+  #   image: rabbitmq:3-management-alpine
+  #   ports:
+  #       - 5672:5672
+  #       - 15672:15672
   redis:
     image: redis
 
